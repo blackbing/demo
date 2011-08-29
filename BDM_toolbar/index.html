@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TEST</title>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+	</head>
+<body>
+
+		<div id="rp_list" class="rp_list">
+			<ul>
+				<li>
+					<div>
+					<img src="images/website.png" alt=""/>
+					</div>
+				</li>
+			</ul>
+
+			<span id="rp_shuffle" class="rp_shuffle">
+			</span>
+		</div>
+		
+		
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script>
+			$(function() {
+				/**
+				* the list of posts
+				*/
+				var $list 		= $('#rp_list ul');
+				/**
+				* number of related posts
+				*/
+				var elems_cnt 		= $list.children().length;
+				
+				/**
+				* show the first set of posts.
+				* 200 is the initial left margin for the list elements
+				*/
+				load(200);
+				
+				function load(initial){
+					$list.find('li').hide().andSelf().find('div').css('margin-left',-initial+'px');
+					var loaded	= 0;
+					//show 5 random posts from all the ones in the list. 
+					//Make sure not to repeat
+					while(loaded < 1){
+						var r 		= Math.floor(Math.random()*elems_cnt);
+						var $elem	= $list.find('li:nth-child('+ (r+1) +')');
+						if($elem.is(':visible'))
+							continue;
+						else
+							$elem.show();
+						++loaded;
+					}
+					//animate them
+					var d = 200;
+					$list.find('li:visible div').each(function(){
+						$(this).stop().animate({
+							'marginLeft':'-36px'
+						},d += 100);
+					});
+				}
+					
+				/**
+				* hovering over the list elements makes them slide out
+				*/	
+				$list.find('li:visible').live('mouseenter',function () {
+					$(this).find('div').stop().animate({
+						'marginLeft':'-500px'
+					},200);
+				}).live('mouseleave',function () {
+					$(this).find('div').stop().animate({
+						'marginLeft':'-36px'
+					},200);
+				});
+				
+				/**
+				* when clicking the shuffle button,
+				* show 5 random posts
+				*/
+				$('#rp_shuffle').unbind('click')
+								.bind('click',shuffle)
+								.stop()
+								.animate({'margin-left':'-18px'},700);
+								
+				function shuffle(){
+					$list.find('li:visible div').stop().animate({
+						'marginLeft':'60px'
+					},200,function(){
+						load(-60);
+					});
+				}
+            });
+		</script>
+
+</body></html>
