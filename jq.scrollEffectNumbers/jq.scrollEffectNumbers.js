@@ -1,6 +1,6 @@
 (function( $ ){
     var CanvasNumber = function(options){
-    	var _SELF = this;
+		var _SELF = this;
         var opts = $.extend({}, {
             path:'./0-9.png',
             initNumber:0,
@@ -18,7 +18,13 @@
         };
         var draw = function(ctx, x, y){
             ctx.clearRect(0, 0, opts.canvas.width, opts.canvas.height);
-            ctx.drawImage(opts.image, x, y);
+			var drawX = x;
+			var drawY = y;
+			if(Math.abs(drawY)> opts.canvas.height){
+				drawY%=opts.image.height;
+			}
+			console.log('drawY='+drawY);
+            ctx.drawImage(opts.image, drawX, drawY);
             opts.currentPos = {x:x, y:y};
         };
         
@@ -48,9 +54,14 @@
             var y = getNumberPos(opts, opts.initNumber);
             var currentTime = 0;
             var targetNumberPos = getNumberPos(opts, opts.targetNumber);
+			//console.log('targetNumberPos = ' + targetNumberPos);
             var change = targetNumberPos - y;
             var duration = 500;
             opts.interval = setInterval(function(){
+				//console.log(opts.currentPos.y);
+				if(opts.currentPos.y - opts.height < targetNumberPos){
+					//opts.currentPos.y = 0;
+				}
                 if(opts.currentPos.y > targetNumberPos){
                     var changeY = opts.ease(currentTime, y, change, duration);
                     draw(ctx, 
