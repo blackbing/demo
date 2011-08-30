@@ -135,17 +135,17 @@
         var MaxNumberDigital = MaxNumber.toString().length;
         var canvasNumberStack = [];
 		initNumber = padLeft(initNumber.toString(), '0', MaxNumberDigital);
-		
+		targetNumber = padLeft(targetNumber.toString(), '0', MaxNumberDigital);
+		console.log(targetNumber);
         for(var i=0; i<MaxNumberDigital; i++){
-            
-            var num = parseInt(initNumber.toString().charAt(i),10) || 0;
-                var myoptions = {};
-                myoptions.$elm = this.get(0);
-                myoptions.initNumber = num;
-				myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
-                var bnumber = new CanvasNumber(myoptions);
-                canvasNumberStack.push(bnumber);
-                bnumber.go();
+			var myoptions = {};
+			myoptions.$elm = this.get(0);
+			myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
+			myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
+			//console.log(myoptions.initNumber + '->' + myoptions.targetNumber );
+			var bnumber = new CanvasNumber(myoptions);
+			canvasNumberStack.push(bnumber);
+			bnumber.go();
         }
     };
 } )( jQuery );
