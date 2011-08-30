@@ -8,7 +8,6 @@
             ease: function (t, b, c, d) {
                 return c*((t=t/d-1)*t*t + 1) + b;
             },
-            currentDrawPos:{x:0,y:0},
             currentPos:{x:0,y:0},
             duration:3000,
             timespan:30
@@ -28,17 +27,6 @@
 			drawY%=(opts.image.height-opts.height);
 
             ctx.drawImage(opts.image, drawX, drawY);
-            if(opts.currentDrawPos){
-                var deltaY = Math.abs(Math.abs(opts.currentDrawPos.y) - Math.abs(drawY));
-                //如果deltaY > 圖片的一半，代表進位
-                if(deltaY > opts.image.height/2){
-//                    console.log('進位');
-                    if(opts.carryOnCallback){
-                        opts.carryOnCallback();
-                    }
-                }
-            }
-            opts.currentDrawPos = {x:drawX, y:drawY};
             opts.currentPos = {x:x, y:y};
         };
         
@@ -95,13 +83,15 @@
             var currentTime = 0;
             var targetNumberPos = getNumberPos(opts, opts.targetNumber);
             var change = targetNumberPos - y;
+			//console.log(change);
             var duration = opts.duration;
             var t = +new Date();
             var timespan = opts.timespan;
             opts.interval = setInterval(function(){
 
-                if(opts.currentPos.y > targetNumberPos){
-                    
+				//利用絕對值判斷是否可已停止
+                if(Math.abs(opts.currentPos.y - targetNumberPos) > 0){
+                    //console.log(Math.abs(opts.currentPos.y - targetNumberPos));
 					
 
                     var changeY = opts.ease(currentTime, y, change, duration);
