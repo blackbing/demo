@@ -1,9 +1,14 @@
+/*
+* 那些年，回到過去特效文字
+* author: blackbing@gmail.com
+*/
+
 (function( $ ){
     var CanvasNumber = function(options){
 		var _SELF = this;
         var opts = $.extend({}, {
-            path:'./0-9.png',
-            //path:'./0-9Nova-Mono-cursive.png',
+            //path:'./0-9.png',
+            path:'./0-9Nova-Mono-cursive.png',
             initNumber:0,
             targetNumber:9,
             ease: function (t, b, c, d) {
@@ -35,11 +40,18 @@
         var $elm = opts.$elm;//this.get(0);
 
         var plineCanvas = document.createElement('canvas');
+        var ctx;// = canvas[0].getContext('2d');
         if(!plineCanvas.getContext && typeof G_vmlCanvasManager!='undefined'){
             plineCanvas = G_vmlCanvasManager.initElement(plineCanvas);
+			plineCanvas.width = 0;
+			plineCanvas.height = 0;
         }
+		if(plineCanvas.getContext) {
+		  ctx = plineCanvas.getContext('2d');
+		  ctx.lineCap = 'round';
+		  ctx.lineJoin = 'round';
+		}
 		$elm.appendChild(plineCanvas);
-        var ctx;// = canvas[0].getContext('2d');
         var img09 = new Image();
         var imgLoaded = false;
         img09.onload = function(){
@@ -49,7 +61,8 @@
 			plineCanvas.width = opts.width;
 			plineCanvas.height = opts.height;
             opts.canvas = plineCanvas;
-            ctx = plineCanvas.getContext('2d');
+            //ctx = plineCanvas.getContext('2d');
+			//console.log(ctx);
             var y = getNumberPos(opts, opts.initNumber);
             opts.image = img09;
             draw(ctx, 
@@ -71,6 +84,7 @@
             this.go({targetNumber:targetNumber});
         };
         this.go = function(args){
+			//console.log('go');
             if(!imgLoaded){
                 var _args = arguments;
                 var _callee = arguments.callee;
@@ -182,56 +196,10 @@
 
     //
     $.fn.scrollEffectNumbers = function(options) {
+		this.empty();
         options.$elm = this.get(0);
         new CanvasNumbers(options);
         
     };
-//    function _update_time(CountdownQueue, _timer, _remain_date){
-//        console.log(arguments);
-////
-//        var h =  _remain_date.remain_date.hours;
-//        var m =  _remain_date.remain_date.minutes;
-//        var s =  _remain_date.remain_date.seconds;
-//        console.log(h+':' +m+':'+s);
-//        CountdownQueue.seconds.add(-1);
-////        CountdownQueue.minutes.add(-1);
-////        CountdownQueue.hours.add(-1);
-//    }
-//    $.fn.scrollEffectCountdown = function(options){
-//        var CountdownQueue = {};
-//        var remaintime = options.remaintime;
-//        var timer = new olemap.util.Timer({
-//            time:{ms:remaintime},
-//            listener:{ms:1000},
-//            clientTime:false
-//        });
-//        
-//        olemap.util.event.addListener(timer,"time_changed", function(_timer, _remain_date){
-//                
-//                _update_time(CountdownQueue, _timer, _remain_date);
-//        });
-//
-//        var remainTime = timer.getRemainDate();
-//        var h = remainTime.hours;
-//        var m = remainTime.minutes;
-//        var s = remainTime.seconds;
-////        console.log(h+':' +m+':'+s);
-//        var defaultOptions = {
-//            $elm: this.get(0),
-//            duration:300,
-//            ease: function(t, b, c, d){
-//                return c*t/d + b;
-//            }
-//        };
-////        var hCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: h}));
-////        CountdownQueue.hours= hCountdown;
-////        var mCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: m}));
-////        CountdownQueue.minutes = mCountdown;
-////        alert(s);
-//          var sCountdown = new CanvasNumbers($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
-////        var sCountdown = this.($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
-//        CountdownQueue.seconds= sCountdown;
-//        timer.start();
-//    };
 } )( jQuery );
 
