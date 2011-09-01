@@ -2,8 +2,8 @@
     var CanvasNumber = function(options){
 		var _SELF = this;
         var opts = $.extend({}, {
-            //path:'./0-9.png',
-            path:'./0-9Nova-Mono-cursive.png',
+            path:'./0-9.png',
+            //path:'./0-9Nova-Mono-cursive.png',
             initNumber:0,
             targetNumber:9,
             ease: function (t, b, c, d) {
@@ -94,20 +94,9 @@
             var timespan = opts.timespan;
             opts.interval = setInterval(function(){
 
-				//利用絕對值判斷是否可已停止
-                //console.log(Math.abs(opts.currentPos.y - targetNumberPos));
-                if(Math.abs(opts.currentPos.y - targetNumberPos) > 1){
-                    //console.log(Math.abs(opts.currentPos.y - targetNumberPos));
-					
-
-                    var changeY = opts.ease(currentTime, y, change, duration);
-                    draw(ctx, 
-                        0,
-                        changeY
-                    );
-                    //console.log('changeY=' + changeY); 
-                    currentTime+=timespan;
-                }else{
+                var changeY = opts.ease(currentTime, y, change, duration);
+				//利用正負取得相交會
+                if( (opts.currentPos.y -targetNumberPos)*(changeY - targetNumberPos) <= 0 ){
                     draw(ctx, 
                         0,
                         targetNumberPos 
@@ -115,6 +104,12 @@
                     clearInterval(opts.interval);
                     opts.initNumber = opts.targetNumber;
                     var ct = +new Date();
+                }else{
+                    draw(ctx, 
+                        0,
+                        changeY
+                    );
+                    currentTime+=timespan;
 
                 }
             }, timespan);
