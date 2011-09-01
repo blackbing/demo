@@ -3,19 +3,29 @@
 <head>
 	<meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="./core.js"></script>
+    <script src="./event.js"></script>
+    <script src="./timer.js"></script>
     <script src="./jq.scrollEffectNumbers.js"></script>
 	<title></title>
 </head>
 <body>
-    <div id="demo">
-    </div>
+    <div id="demo"></div>
+    <div id="demo1"></div>
     <script>
         $(document).ready(function(){
             $('#demo').scrollEffectNumbers({
-                initNumber: 1,
-                targetNumber:1111 
+                initNumber: 38,
+                targetNumber: 37,
+                duration: 300,
+                ease: function(t, b, c, d){
+                    return c*t/d + b;
+                }
             });
 
+            $('#demo1').scrollEffectCountdown({
+                remaintime: 999999,
+            });
         });
     </script>
 </body>
