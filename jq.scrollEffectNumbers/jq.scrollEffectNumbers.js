@@ -33,11 +33,11 @@
         
         var $elm = opts.$elm;//this.get(0);
 
-        var $canvas = $('<canvas/>').appendTo($elm);
-        if(!$canvas[0].getContext && typeof G_vmlCanvasManager!='undefined'){
-            var canvas = $canvas[0];
-            $canvas = $(G_vmlCanvasManager.initElement(canvas));
+        var plineCanvas = document.createElement('canvas');
+        if(!plineCanvas.getContext && typeof G_vmlCanvasManager!='undefined'){
+            plineCanvas = G_vmlCanvasManager.initElement(plineCanvas);
         }
+		$elm.appendChild(plineCanvas);
         var ctx;// = canvas[0].getContext('2d');
         var img09 = new Image();
         var imgLoaded = false;
@@ -45,11 +45,10 @@
 
             opts.width = img09.width;
             opts.height = Math.round(img09.height/11);
-            //alert(opts.height);
-            $canvas.attr('width', opts.width);
-            $canvas.attr('height',opts.height);
-            opts.canvas = $canvas[0];
-            ctx = $canvas[0].getContext('2d');
+			plineCanvas.width = opts.width;
+			plineCanvas.height = opts.height;
+            opts.canvas = plineCanvas;
+            ctx = plineCanvas.getContext('2d');
             var y = getNumberPos(opts, opts.initNumber);
             opts.image = img09;
             draw(ctx, 
