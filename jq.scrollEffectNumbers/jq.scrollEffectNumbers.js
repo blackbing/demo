@@ -11,7 +11,8 @@
             },
             currentPos:{x:0,y:0},
             duration:1000,
-            timespan:30
+            timespan:30,
+            updatedCallback:null
         }, options);
 
         var getNumberPos = function(opts, num){
@@ -131,37 +132,52 @@
      * desc: 多個數字使用這個方法，擴充原本的CanvasNumber
      * */
     function CanvasNumbers(options){
-        
+        var me = this;
         var initNumber = options.initNumber;
         var targetNumber = options.targetNumber;
-        var MaxNumber = Math.max(initNumber, targetNumber);
-        var MaxNumberDigital = MaxNumber.toString().length;
         var canvasNumberStack = [];
-		initNumber = padLeft(initNumber.toString(), '0', MaxNumberDigital);
-		targetNumber = padLeft(targetNumber.toString(), '0', MaxNumberDigital);
 		//console.log(targetNumber);
-        for(var i=0; i<MaxNumberDigital; i++){
-            //deep clone
-            var myoptions = jQuery.extend(true, {}, options);
-			myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
-			myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
-			console.log(myoptions.initNumber + '->' + myoptions.targetNumber );
-			var bnumber = new CanvasNumber(myoptions);
-			canvasNumberStack.push(bnumber);
-			bnumber.go();
-        }
         this.initNumber = initNumber;
         this.targetNumber = targetNumber;
         this.go = function(){
-            $.each(canvasNumberStack, function(idx, val){
-                   val.go(); 
-            });
+            var me = this;
+            var MaxNumber = Math.max(initNumber, targetNumber);
+            var MaxNumberDigital = MaxNumber.toString().length;
+		    initNumber = padLeft(initNumber.toString(), '0', MaxNumberDigital);
+		    targetNumber = padLeft(targetNumber.toString(), '0', MaxNumberDigital);
+            for(var i=0; i<MaxNumberDigital; i++){
+                //deep clone
+                var myoptions = jQuery.extend(true, {}, options);
+    			myoptions.initNumber = parseInt(me.initNumber.toString().substring(0, i+1), 10);
+    			myoptions.targetNumber = parseInt(me.targetNumber.toString().substring(0, i+1), 10);
+    			canvasNumberStack[i].updateOption(myoptions);
+    			canvasNumberStack[i].go();
+            }
+            me.initNumber = me.targetNumber;
         };
         this.add = function(value){
-            $.each(canvasNumberStack, function(idx, val){
-                   val.add(value); 
-            });
+            this.targetNumber = this.initNumber+value;
+            this.go();
         };
+        (function(){
+            var MaxNumber = Math.max(me.initNumber, me.targetNumber);
+            var MaxNumberDigital = MaxNumber.toString().length;
+		    var initNumber = padLeft(me.initNumber.toString(), '0', MaxNumberDigital);
+		    var targetNumber = padLeft(me.targetNumber.toString(), '0', MaxNumberDigital);
+            for(var i=0; i<MaxNumberDigital; i++){
+                //deep clone
+                var myoptions = jQuery.extend(true, {}, options);
+    			myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
+    			myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
+    			var bnumber = new CanvasNumber(myoptions);
+    			canvasNumberStack.push(bnumber);
+    			bnumber.go();
+            }
+            
+            this.initNumber = this.targetNumber;
+         
+//            this.go();
+        })();
     }
 
 
@@ -173,77 +189,54 @@
     $.fn.scrollEffectNumbers = function(options) {
         options.$elm = this.get(0);
         new CanvasNumbers(options);
-//        var initNumber = options.initNumber;
-//        var targetNumber = options.targetNumber;
-//        var MaxNumber = Math.max(initNumber, targetNumber);
-//        var MaxNumberDigital = MaxNumber.toString().length;
-//        var canvasNumberStack = [];
-//		initNumber = padLeft(initNumber.toString(), '0', MaxNumberDigital);
-//		targetNumber = padLeft(targetNumber.toString(), '0', MaxNumberDigital);
-//		//console.log(targetNumber);
-//        for(var i=0; i<MaxNumberDigital; i++){
-//			//var myoptions = {};
-//            //deep clone
-//            var myoptions = jQuery.extend(true, {}, options);
-//			myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
-//			myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
-//			console.log(myoptions.initNumber + '->' + myoptions.targetNumber );
-//			var bnumber = new CanvasNumber(myoptions);
-//			canvasNumberStack.push(bnumber);
-//			bnumber.go();
-////			bnumber.add(3);
-////            setTimeout(function(){
-////                bnumber.add(-2);
-////                    }, 2000);
-//        }
         
     };
-    function _update_time(CountdownQueue, _timer, _remain_date){
-        console.log(arguments);
+//    function _update_time(CountdownQueue, _timer, _remain_date){
+//        console.log(arguments);
+////
+//        var h =  _remain_date.remain_date.hours;
+//        var m =  _remain_date.remain_date.minutes;
+//        var s =  _remain_date.remain_date.seconds;
+//        console.log(h+':' +m+':'+s);
+//        CountdownQueue.seconds.add(-1);
+////        CountdownQueue.minutes.add(-1);
+////        CountdownQueue.hours.add(-1);
+//    }
+//    $.fn.scrollEffectCountdown = function(options){
+//        var CountdownQueue = {};
+//        var remaintime = options.remaintime;
+//        var timer = new olemap.util.Timer({
+//            time:{ms:remaintime},
+//            listener:{ms:1000},
+//            clientTime:false
+//        });
+//        
+//        olemap.util.event.addListener(timer,"time_changed", function(_timer, _remain_date){
+//                
+//                _update_time(CountdownQueue, _timer, _remain_date);
+//        });
 //
-        var h =  _remain_date.remain_date.hours;
-        var m =  _remain_date.remain_date.minutes;
-        var s =  _remain_date.remain_date.seconds;
-        console.log(h+':' +m+':'+s);
-        CountdownQueue.seconds.add(-1);
-//        CountdownQueue.minutes.add(-1);
-//        CountdownQueue.hours.add(-1);
-    }
-    $.fn.scrollEffectCountdown = function(options){
-        var CountdownQueue = {};
-        var remaintime = options.remaintime;
-        var timer = new olemap.util.Timer({
-            time:{ms:remaintime},
-            listener:{ms:1000},
-            clientTime:false
-        });
-        
-        olemap.util.event.addListener(timer,"time_changed", function(_timer, _remain_date){
-                
-                _update_time(CountdownQueue, _timer, _remain_date);
-        });
-
-        var remainTime = timer.getRemainDate();
-        var h = remainTime.hours;
-        var m = remainTime.minutes;
-        var s = remainTime.seconds;
-        console.log(h+':' +m+':'+s);
-        var defaultOptions = {
-            $elm: this.get(0),
-            duration:300,
-            ease: function(t, b, c, d){
-                return c*t/d + b;
-            }
-        };
-//        var hCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: h}));
-//        CountdownQueue.hours= hCountdown;
-//        var mCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: m}));
-//        CountdownQueue.minutes = mCountdown;
-//        alert(s);
-          var sCountdown = new CanvasNumbers($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
-//        var sCountdown = this.($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
-        CountdownQueue.seconds= sCountdown;
-        timer.start();
-    };
+//        var remainTime = timer.getRemainDate();
+//        var h = remainTime.hours;
+//        var m = remainTime.minutes;
+//        var s = remainTime.seconds;
+////        console.log(h+':' +m+':'+s);
+//        var defaultOptions = {
+//            $elm: this.get(0),
+//            duration:300,
+//            ease: function(t, b, c, d){
+//                return c*t/d + b;
+//            }
+//        };
+////        var hCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: h}));
+////        CountdownQueue.hours= hCountdown;
+////        var mCountdown = new CanvasNumber($.extend(defaultOptions, {initNumber: m}));
+////        CountdownQueue.minutes = mCountdown;
+////        alert(s);
+//          var sCountdown = new CanvasNumbers($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
+////        var sCountdown = this.($.extend(defaultOptions, {initNumber: s, targetNumber:s-1}));
+//        CountdownQueue.seconds= sCountdown;
+//        timer.start();
+//    };
 } )( jQuery );
 
