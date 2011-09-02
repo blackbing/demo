@@ -30,17 +30,6 @@
                     var x = 0;
                     return h * (num);
                 };
-            var draw = function(ctx, x, y) {
-                    ctx.clearRect(0, 0, opts.canvas.width, opts.canvas.height);
-                    var drawX = x;
-                    var drawY = y;
-                    drawY %= (opts.image.height - opts.height);
-                    ctx.drawImage(opts.image, drawX, drawY);
-                    opts.currentPos = {
-                        x: x,
-                        y: y
-                    };
-                };
             var drawNumber = function(num) {
                     //console.log('drawNumber:'+num);
                     //ctx.clearRect(0, 0, opts.canvas.width, opts.canvas.height);
@@ -124,6 +113,7 @@
                 drawNumber(opts.initNumber);
                 plineCanvas.style.display = '';
                 imgLoaded = true;
+                $(opts.$elm).show();
             };
             img09.src = opts.path;
             this.getOption = function() {
@@ -210,7 +200,7 @@
     }
     //
     $.fn.scrollEffectNumbers = function(options) {
-        this.empty(); //.hide();
+        this.empty().hide();
         options.$elm = this.get(0);
         var bnumber = new CanvasNumber(options);
         bnumber.go();
