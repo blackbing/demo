@@ -1,6 +1,10 @@
 /*
-* 那些年，回到過去特效文字
-* author: blackbing@gmail.com
+* Description: 那些年，回到過去特效文字
+* Author: blackbing@gmail.com
+* Example: $('#year').scrollEffectNumbers({
+                initNumber: 2011,
+                targetNumber: 1980,
+                duration: 3000});
 */
 (function($) {
     var CanvasNumber = function(options) {
@@ -31,31 +35,14 @@
                     return h * (num);
                 };
             var drawNumber = function(num) {
-                    //console.log('drawNumber:'+num);
-                    //ctx.clearRect(0, 0, opts.canvas.width, opts.canvas.height);
-                    
-                    
                     var MaxNumberDigital = getMaxNumberDigital();
                     var numString = padLeft(num.toString(), '0', MaxNumberDigital);
-                    //var drawX, drawY;
                     var pos = [];
                     for (var i = 0; i < numString.length; i++) {
                         //console.log(numString.substring(i, 1));
-                        //ctx.save();
-                        //if(opts.transform){
-                        //    opts.transform(ctx);
-                        //}
                         var drawY = getNumberPos(numString.substring(i, i + 1));
-                        //var th = (opts.image.height - opts.height);
-                        //drawY %= th;
-                        //console.log(drawY);
-                        //drawY = (drawY+th)%th;
                         var drawX = opts.width * i;
                         pos.push({x:drawX, y:drawY});
-                        //ctx.drawImage(opts.image, drawX, drawY);
-                        //ctx.drawImage(opts.image,  0,drawY,opts.width, opts.height, drawX, 0, opts.width, opts.height);
-                     
-                        //ctx.restore();   
                     }
                     drawNumberByPositions(pos);
                 };
@@ -72,9 +59,9 @@
                         drawY = pos[i].y;
                         var th = (opts.image.height - opts.height);
                         drawY %= th;
-                        //console.log(drawY);
                         drawY = (drawY+th)%th;
                         drawX = opts.width * i;
+                        //cut the image and draw on canvas
                         ctx.drawImage(opts.image,  0,drawY,opts.width, opts.height, drawX, 0, opts.width, opts.height);
                     }
                     ctx.restore();
@@ -156,7 +143,6 @@
                     myoptions.delta = myoptions.targetPos - myoptions.initPos;
                     canvasNumberStack.push(myoptions);
                 }
-                //console.log(canvasNumberStack);
                 var currentTime = 0;
                 var duration = opts.duration;
                 var t = +new Date();
