@@ -45,6 +45,7 @@
             plineCanvas = G_vmlCanvasManager.initElement(plineCanvas);
 			plineCanvas.width = 0;
 			plineCanvas.height = 0;
+            plineCanvas.style.display = 'none';
         }
 		if(plineCanvas.getContext) {
 		  ctx = plineCanvas.getContext('2d');
@@ -69,6 +70,7 @@
                 0,
                 y
             );
+            plineCanvas.style.display = '';
 			imgLoaded = true;
         };
         img09.src = opts.path;
@@ -157,10 +159,10 @@
             for(var i=0; i<MaxNumberDigital; i++){
                 //deep clone
                 var myoptions = jQuery.extend(true, {}, options);
-    			myoptions.initNumber = parseInt(me.initNumber.toString().substring(0, i+1), 10);
-    			myoptions.targetNumber = parseInt(me.targetNumber.toString().substring(0, i+1), 10);
-    			canvasNumberStack[i].updateOption(myoptions);
-    			canvasNumberStack[i].go();
+                myoptions.initNumber = parseInt(me.initNumber.toString().substring(0, i+1), 10);
+                myoptions.targetNumber = parseInt(me.targetNumber.toString().substring(0, i+1), 10);
+                canvasNumberStack[i].updateOption(myoptions);
+                canvasNumberStack[i].go();
             }
             me.initNumber = me.targetNumber;
         };
@@ -176,13 +178,13 @@
             for(var i=0; i<MaxNumberDigital; i++){
                 //deep clone
                 var myoptions = jQuery.extend(true, {}, options);
-    			myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
-    			myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
-    			var bnumber = new CanvasNumber(myoptions);
-    			canvasNumberStack.push(bnumber);
-    			bnumber.go();
+                myoptions.initNumber = parseInt(initNumber.toString().substring(0, i+1), 10);
+                myoptions.targetNumber = parseInt(targetNumber.toString().substring(0, i+1), 10);
+                var bnumber = new CanvasNumber(myoptions);
+                canvasNumberStack.push(bnumber);
+                bnumber.go();
             }
-            
+            //$(options.$elm).show();
             this.initNumber = this.targetNumber;
          
 //            this.go();
@@ -196,7 +198,7 @@
 
     //
     $.fn.scrollEffectNumbers = function(options) {
-		this.empty();
+		this.empty();//.hide();
         options.$elm = this.get(0);
         new CanvasNumbers(options);
         
