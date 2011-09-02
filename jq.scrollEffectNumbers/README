@@ -1,0 +1,8 @@
+/*
+* Description: 那些年，回到過去特效文字
+* Author: blackbing@gmail.com
+* Example: $('#year').scrollEffectNumbers({
+                initNumber: 2011,
+                targetNumber: 1980,
+                duration: 3000});
+*/
