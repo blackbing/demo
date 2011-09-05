@@ -1,0 +1,97 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+(function($) {
+    $.extend($, {
+        cloneObject : function(obj){
+            var newObj;
+            if($.isArray(obj)){
+                newObj = [];
+                for(var i=0; i<obj.length; i++){
+                    newObj.push(arguments.callee(obj[i]));
+                }
+                return newObj;
+            }else{
+                newObj = {};
+                return $.extend(true, newObj, obj);
+            }
+        }
+    });
+})(jQuery)
+</script>
+<title>繁體中文筆劃排序 cht_strokesort By BLACKBING</title>
+
+</head>
+
+<body class="yui-skin-sam">
+
+<h1>繁體中文筆劃排序 cht_strokesort By BLACKBING</h1>
+<h2><a href="http://blog.blackbing.net/?p=797" target="_blank">blog post</a> from <a href="http://blog.blackbing.net" target="_blank">BLACKBING</a></h2>
+<button id="sortbyLocaleCompare">Sort by LocaleCompare</button>
+<button id="sortbyStroke">Sort by 筆劃</button>
+<div id="sort"></div> 
+<div id="result"></div> 
+
+<script type="text/javascript">
+var Data = [
+	{Name:"Cars 2：世界大賽", Time:"1小時 52分鐘", Catgory:"動畫短片"},
+        {Name:"猩球崛起", Time:"1小時 45分鐘", Catgory:"奇想科幻"},
+        {Name:"星際飆客", Time:"1小時 59分鐘", Catgory:"奇想科幻"},
+        {Name:"翻滾吧！阿信", Time:"2小時 7分鐘", Catgory:"劇情片‎"},
+        {Name:"美國隊長", Time:"2小時 4分鐘", Catgory:"動作冒險"},
+        {Name:"殺手歐陽盆栽", Time:"1小時 43分鐘", Catgory:"劇情片‎"},
+        {Name:"那些年，我們一起追的女孩", Time:"1小時 50分鐘", Catgory:"‎浪漫愛情"},
+        {Name:"王二麻子", Time:"1小時 50分鐘", Catgory:"‎浪漫愛情"},
+        {Name:"大便當", Time:"1小時 50分鐘", Catgory:"‎浪漫愛情"}
+];
+
+function recordTemplate(records){
+	var t = [];
+	for(var i in records){
+		t.push("<li>"+records[i].Name+"</li>");
+	}	
+	return t.join("");
+}
+function sortbyStroke(){
+	var url = 'cht_strokesort.php';
+	var compare = [];
+	for(var i in Data){
+		compare.push(encodeURIComponent(Data[i]['Name']));
+	}
+	$.get(url, {compare:compare.join(',')}, function(res){
+		
+		var json = $.parseJSON(res);
+		var sortedData = [];
+		for(var i in json){
+			var idx = json[i]['original_index'];
+			var record = $.cloneObject(Data[idx]);
+			record['Name'] = '[' + json[i]['stroke'] + ']' + record['Name'];
+			sortedData.push(record);
+		}
+		$('#sort').html(recordTemplate(sortedData));
+		$('#result').hide().html('利用ajax查詢筆劃數，這個結果就真的按照筆劃來排序了。[]裡頭代表筆劃數').fadeIn();
+	});
+}
+function sortbyLocaleCompare(){
+	function mysort(a, b){
+		return a['Name'].localeCompare(b['Name']);
+	}
+	var records = $.cloneObject(Data);
+	
+	var sortedData = records.sort(mysort);
+	$('#sort').html(recordTemplate(sortedData));
+	$('#result').hide().html('沒有依照筆劃數來排序，這應該是跟系統有關，極有可能僅是依照ASCII code來做排序').fadeIn();
+}
+$(document).ready(function(){
+	$('#sort').html(recordTemplate(Data));
+	$('#sortbyStroke').click(sortbyStroke);
+	$('#sortbyLocaleCompare').click(sortbyLocaleCompare);
+});
+</script>
+</body>
+</html>
+

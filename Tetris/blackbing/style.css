@@ -1,0 +1,31 @@
+/*
+//Author: Bingo 
+//email: blackbing@gmail.com
+//date: 2010/04/28
+*/
+.stage{
+	border:2px solid #CCC;
+	padding:5px;
+	margin:0px;
+	width:316px;
+	
+}
+.stage .grid{
+	display:inline-block;
+	border: 0px;
+	width:16px;
+	height:16px;
+	outline:1px solid #000;
+	margin:0px;
+	padding:0px;
+}
+.stage .grid.blue{
+	background-color:blue;
+}
+.stage .grid.red{
+	background-color:red;
+}
+.stage .grid.grey{
+	background-color:grey;
+}
+	
