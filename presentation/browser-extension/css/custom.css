@@ -8,6 +8,7 @@ ul.disc li{
 }
 li em {
     font-size:20px;
+    margin-left:20px;
 }
 @-webkit-keyframes rotate {
   from {
@@ -22,6 +23,53 @@ li em {
     -webkit-animation-duration:         2s; 
     -webkit-animation-iteration-count:  infinite;
     -webkit-animation-timing-function: linear;
+}
+.practice{
+    display:none;
+    font-size:1200%;
+    text-align: center;
+    -webkit-transform: rotate(350deg);
+    -webkit-transition: all 1s ease;-moz-transition: all 1s ease-in;
+}
+.middle a{
+    border:0;
+}
+a.browser-icon{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease-in;
+    background-size:64px;
+    width:64px;
+    height:64px;
+}
+a.browser-icon:hover{
+    background-size:128px;
+    width:128px;
+    height:128px;
+}
+a.chrome-icon{
+    background-image:url(../images/chrome_128.png);
+}
+a.firefox-icon{
+    background-image:url(../images/firefox_128.png);
+}
+a.ie-icon{
+    background-image:url(../images/ie_128.png);
+}
+a.opera-icon{
+    background-image:url(../images/opera_128.png);
+}
+a.safari-icon{
+    background-image:url(../images/safari_128.png);
+}
+#browser-desc{
+    font-size: 150%;
+    text-align: left;
+    width: 90%;
+    margin-left: 50px;
+    line-height: 30px;
+    position: absolute;
+    left: 0px;
+    top: 400px;
 }
 /*#slide2 .key {
   bottom: 2px;

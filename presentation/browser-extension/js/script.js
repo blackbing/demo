@@ -251,8 +251,26 @@
 
     current: 0,
     next: function() {
-        var next = query('#' + this.current + ' + .slide');
-        this._update((next) ? next.id : this.current);
+        //if there is any custom action
+        var current = query('.slide:nth-child(' + (this._getCurrentIndex() ) + ')');
+        var actions = $('[data-action]:not([data-finished])', $(current));
+        //console.log(actions);
+        if(actions.length){
+            //console.log($('[data-action]', $(next)));
+            var action = actions.eq(0);
+            var scripteval = action.data('action');
+            //console.log(scripteval);
+            if(scripteval){
+                eval(scripteval);
+                action.attr('data-finished', true);
+            }
+        }else{
+        
+            var next = query('#' + this.current + ' + .slide');
+            
+            this._update((next) ? next.id : this.current);
+        
+        }
     },
     prev: function() {
       var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');

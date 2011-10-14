@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Web 開發者不可忽視的瀏覽器擴充元件</title>
+    <title>Web Developer不可忽視的瀏覽器擴充元件</title>
 
     <!-- Linking styles -->
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+</body>
 </head>
 <body>
 
@@ -28,7 +30,7 @@
 
         <div class="slide" id="slide1"><!-- Defining single slide -->
           <section class="middle">
-            <h2>Web 開發者不可忽視的</h2>
+            <h2>Web Developer不可忽視的</h2>
             <p>瀏覽器擴充元件</p>
             <em>Bingo in 2011.10</em>
             <br>
@@ -79,10 +81,48 @@
         </div>
         <!--next slide start-->
         <div class="slide">
+          <header>為何需要Extension</header>
+          <section>
+            <ul class="disc">
+              <li>因為酷阿～我擁有別人沒有的功能！<br>
+                <em>網站功能如何賺錢？「安裝」付費的擴充元件</em>
+              </li>
+              <li>我希望每個網頁都有這個功能!<br>
+                <em>跨網站的功能，Mashup的結合，例如：<a href="https://chrome.google.com/webstore/detail/omiekjeapoonbhiemenfoccbdpeagdah" target="_blank">Cloud Save</a>, <a href="https://chrome.google.cuom/webstore/detail/aamklbolfkledofgpbdllkangemkfdnb" target="_blank">Publish post sync for Google+, facebook</a></em></li>
+              <li>網站及應用程式曝光的管道!<br><em>app store發光發熱，developer奮起吧!</em></li>
+              <li>突破瀏覽器限制!<br>
+                <em>利用extension api完成不可能的任務!</em></li>
+            </ul>
+          </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
+        <div class="slide">
+            <section class="middle">
+              <hgroup>
+                  
+                  <h2 style="font-size:150%;">
+                    Web Developer, What you need is "Creative", and ......
+                  </h2>
+                </hgroup>
+                  <div class="practice"  data-action="$('.practice').show();setTimeout(function(){$('.practice')[0].style.fontSize='500%';}, 500);">Practice !</div>
+            </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
+        <div class="slide">
           <header>目標瀏覽器</header>
           <section>
             <!-- source from http://gs.statcounter.com/ -->
-            <div id="browser-ww-monthly-201009-201109" width="600" height="400" style="width:600px; height: 400px;position:relative; left:50%; margin-left:-300px; text-align:center;"><a class="" style="border-bottom:0;margin-top: 100px;" href="#" onclick="$(this).addClass('loading');$.getScript( 'http://gs.statcounter.com/chart.php?browser-ww-monthly-201009-201109');return false;"><img src="./images/reload.png"></a></div>
+            <div id="browser-ww-monthly-201009-201109" width="600" height="400" style="width:600px; height: 400px;position:relative; left:50%; margin-left:-300px; text-align:center;"><a id="browserChart" class="" style="border-bottom:0;margin-top: 100px;" href="#" onclick="$(this).addClass('loading');$.getScript( 'http://gs.statcounter.com/chart.php?browser-ww-monthly-201009-201109');return false;" data-action="$('#browserChart').trigger('click');"><img src="./images/reload.png"></a></div>
             <p style="text-align:center;">Source: <a href="http://gs.statcounter.com/">StatCounter Global Stats - Browser Market Share</a></p>
             <script type="text/javascript" src="http://www.statcounter.com/js/FusionCharts.js"></script>
             
@@ -101,8 +141,48 @@
               <li><a href="http://code.google.com/chrome/extensions/overview.html">Google Chrome Extensions</a><br><em>http://code.google.com/chrome/extensions/overview.html</em></li>
               <li><a href="https://addons.mozilla.org/zh-TW/developers/">Firefox addons</a><br><em>https://addons.mozilla.org/zh-TW/developers/</em></li>
               <li><a  href="http://msdn.microsoft.com/en-us/library/aa753587(v=vs.85).aspx">IE Browser Extensions</a><br><em>http://msdn.microsoft.com/en-us/library/aa753587(v=vs.85).aspx</em></li>
+              <li><a href="http://www.opera.com/addons/extensions/develop/" target="_blank">Opera Extensions</a><br><em>http://www.opera.com/addons/extensions/develop/</em></li>
             </ul>
             
+          </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
+        <div class="slide">
+          <header>Extension Web Store</header>
+          <section id="browser-section" class="middle"><a href="#" class="firefox-icon browser-icon" data-desc="Addons for Firefox，相當完整，但版本更新太快也造成開發者的問題，好消息是新的Extension API架構與開發過程都非常簡單。值得投入。"></a>
+            <a href="#" title="chrome" class="chrome-icon browser-icon" data-desc="Chrome Web Store，非常完整且已經開始有付費機制。"></a>
+            
+            <a href="#" class="opera-icon browser-icon" data-desc="Opera致力於行動裝置與其他設備，但在行動裝置上的功能以Native的APP來撰寫還是王道。"></a>
+            <a href="#" class="safari-icon browser-icon" data-desc="Apple Extension Store 還屬於小眾市場，況且Apple主力「似乎」不在瀏覽器上。"></a>
+            <a href="#" class="ie-icon browser-icon" data-desc="兵敗如山倒，無話可說。"></a>
+            <div id="browser-desc">&nbsp;</div>
+          </section>
+          <script>
+            $(function(){
+                $('.browser-icon').hover(function(){
+                    
+                    $('#browser-desc').html($(this).data('desc'));
+                })
+                $('#browser-section').mouseleave(function(){
+                    $('#browser-desc').html('&nbsp;');
+                });
+            });
+          </script>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
+        <div class="slide">
+          <header></header>
+          <section class="middle">
           </section>
           <aside class="note">
             <section>
@@ -155,6 +235,4 @@
     </div>
 
     <script type="text/javascript" src="js/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-</body>
 </html>
