@@ -1,0 +1,46 @@
+/* custom slides */
+ul.disc li{
+    list-style-type: disc;
+    font-size: 26px;
+}
+#slide1 p {
+  font-size: 35px;
+}
+li em {
+    font-size:20px;
+}
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+.loading img{
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         2s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+}
+/*#slide2 .key {
+  bottom: 2px;
+}
+#slide3 h1, #slide3 h2,
+#slide4 h1, #slide4 h2,
+#slide5 h1, #slide5 h2 {
+  color: black;
+}
+#slide3 h1,
+#slide4 h1,
+#slide5 h1 {
+  letter-spacing: -2px;
+  font-size: 96px;
+}
+#slide3 h2,
+#slide4 h2,
+#slide5 h2 {
+  margin-top: -5px;
+  font-size: 40px;
+  letter-spacing: -1px;
+}*/

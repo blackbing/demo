@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>HTML5 Presentation demo | Script tutorials</title>
+    <title>Web 開發者不可忽視的瀏覽器擴充元件</title>
 
     <!-- Linking styles -->
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
 </head>
 <body>
 
@@ -27,8 +28,11 @@
 
         <div class="slide" id="slide1"><!-- Defining single slide -->
           <section class="middle">
-            <p>HTML5 Presentation demo</p>
-            <p>Press <span id="left-init-key" class="key">&rarr;</span> key to continue.</p>
+            <h2>Web 開發者不可忽視的</h2>
+            <p>瀏覽器擴充元件</p>
+            <em>Bingo in 2011.10</em>
+            <br>
+            <em>Press <span id="left-init-key" class="key">&rarr;</span> key to continue.</em>
           </section>
           <aside class="note"><!-- hidden notes of slide -->
             <section>
@@ -36,15 +40,14 @@
             </section>
           </aside> 
         </div>
-
+        <!--next slide start-->
         <div class="slide" id="slide2">
-          <header>Slides controls</header>
+          <header>Web APP</header>
           <section>
-            <ul>
-              <li><span class="key">&larr;</span> and <span class="key">&rarr;</span> to move forward/back.</li>
-              <li><span class="key">spacebar</span> to move forward.</li>
-              <li><span class="key">N</span> to toggle hidden notes.</li>
-              <li><span class="key">H</span> to toggle help.</li>
+            <ul class="disc">
+              <li>網站不是網站而已，web app的時代已經來臨。</li>
+              <li>越來越複雜的互動功能儼然是更先進的應用程式。</li>
+              <li>chrome Web Store: <a  href="https://chrome.google.com/webstore">https://chrome.google.com/webstore</a></li>
             </ul>
           </section>
           <aside class="note">
@@ -53,46 +56,72 @@
             </section>
           </aside> 
         </div>
-
-        <div class="slide" id="slide3">
-          <section class="middle">
-            <hgroup>
-              <h1>
-                Slide3
-              </h1>
-              <h2>
-                Slide Title #3
-              </h2>
-            </hgroup>
-            <p>text of slide, text of slide, text of slide, text of slide</p>
+        <!--next slide start-->
+        <div class="slide">
+          <header>瀏覽器限制</header>
+          <section>
+            <ul class="disc">
+              <li>安全性限制：瀏覽器無法直接存取使用者的系統。
+                <ul>
+                    <li>剪貼簿</li>
+                    <li>檔案存取</li>
+                    <li>通知</li>
+                </ul>
+              </li>
+              <li>HTML5：突破以往瀏覽器的限制，然而安全性是還是最大議題。</li>
+            </ul>
           </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
         </div>
-
-        <div class="slide" id="slide4">
-          <section class="middle">
-            <hgroup>
-              <h1>
-                Slide4
-              </h1>
-              <h2>
-                Slide Title #4
-              </h2>
-            </hgroup>
-            <p>text of slide, text of slide, text of slide, text of slide</p>
+        <!--next slide start-->
+        <div class="slide">
+          <header>目標瀏覽器</header>
+          <section>
+            <!-- source from http://gs.statcounter.com/ -->
+            <div id="browser-ww-monthly-201009-201109" width="600" height="400" style="width:600px; height: 400px;position:relative; left:50%; margin-left:-300px; text-align:center;"><a class="" style="border-bottom:0;margin-top: 100px;" href="#" onclick="$(this).addClass('loading');$.getScript( 'http://gs.statcounter.com/chart.php?browser-ww-monthly-201009-201109');return false;"><img src="./images/reload.png"></a></div>
+            <p style="text-align:center;">Source: <a href="http://gs.statcounter.com/">StatCounter Global Stats - Browser Market Share</a></p>
+            <script type="text/javascript" src="http://www.statcounter.com/js/FusionCharts.js"></script>
+            
           </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
         </div>
-
-        <div class="slide" id="slide5">
+        <!--next slide start-->
+        <div class="slide">
+          <header>Browser Extension</header>
+          <section>
+            <ul class="disc">
+              <li><a href="http://code.google.com/chrome/extensions/overview.html">Google Chrome Extensions</a><br><em>http://code.google.com/chrome/extensions/overview.html</em></li>
+              <li><a href="https://addons.mozilla.org/zh-TW/developers/">Firefox addons</a><br><em>https://addons.mozilla.org/zh-TW/developers/</em></li>
+              <li><a  href="http://msdn.microsoft.com/en-us/library/aa753587(v=vs.85).aspx">IE Browser Extensions</a><br><em>http://msdn.microsoft.com/en-us/library/aa753587(v=vs.85).aspx</em></li>
+            </ul>
+            
+          </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
+        <div class="slide" id="end">
           <section class="middle">
             <hgroup>
               <h1>
-                Slide5
+                End
               </h1>
               <h2>
-                Slide Title #5
+                Thank you
               </h2>
             </hgroup>
-            <p>text of slide, text of slide, text of slide, text of slide</p>
+            <p>blackbing@gmail.com</p>
           </section>
         </div>
 
@@ -126,5 +155,6 @@
     </div>
 
     <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 </body>
 </html>
