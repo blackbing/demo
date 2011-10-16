@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html> 
+    <head> 
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+		<script type="text/javascript" src="./jquery-1.6.1.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+                
+        });
+		function addFamilyTableRow(){
+			
+			$.ajax({
+			  url: "getFamilyData.html",
+			  type: "POST",
+			  cache: false,
+			  dataType: "json",
+			  contentType: "application/json; charset=utf-8",
+			  success: function(JSon) {
+				
+				$.each(JSon.family, function(i,family){
+					$("#family_table tbody:last").append("<tr>" +
+								  "<td>" +family.name+ "</td>" +
+								  "<td>" +family.age+ "</td>" +
+								  "<td>" +family.height+ "</td>" +
+								  "</tr>");
+				});
+	
+			  },
+			  error: function(err) {
+				alert("ERROR!!!"+err);
+			  }
+			});
+			
+			/*
+			$.getJSON("getData.html",function(data){
+			$.each(data.posts, function(i,data){
+				
+				$("#family_table tbody:last").append("<tr>" +
+								  "<td>" +data.name+ "</td>" +
+								  "<td>" +data.age+ "</td>" +
+								  "<td>" +data.height+ "</td>" +
+								  "</tr>");
+			});
+			});
+			*/
+		}
+		</script>
+</head>
+<body>
+	<input type="button" value="addFamily" onClick="addFamilyTableRow();">
+	<table id="family_table" border="1">
+		<thead>
+			<tr><td>name</td><td>age</td><td>height</td></tr>
+		</thead>
+		<tbody>
+				
+		</tbody>
+	</table>
+</body>
+</html>
