@@ -26,22 +26,23 @@ li em {
 }
 .practice{
     display:none;
-    font-size:1200%;
+    font-size:1000%;
     text-align: center;
     -webkit-transform: rotate(350deg);
-    -webkit-transition: all 1s ease;-moz-transition: all 1s ease-in;
+    -webkit-transition: all 1s ease-in;
+    -moz-transition: all 1s ease-in;
 }
 .middle a{
     border:0;
 }
 a.browser-icon{
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
     background-size:64px;
     width:64px;
     height:64px;
 }
-a.browser-icon:hover{
+a.browser-icon-hover{
     background-size:128px;
     width:128px;
     height:128px;
@@ -70,6 +71,19 @@ a.safari-icon{
     position: absolute;
     left: 0px;
     top: 400px;
+}
+#idea_div{
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size:60px;
+    margin-right: 70px;
+    margin-top: -80px;
+    -webkit-transform: rotate(15deg);
+    /*-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+*/
 }
 /*#slide2 .key {
   bottom: 2px;

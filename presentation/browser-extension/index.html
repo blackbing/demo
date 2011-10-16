@@ -154,21 +154,24 @@
         <!--next slide start-->
         <div class="slide">
           <header>Extension Web Store</header>
-          <section id="browser-section" class="middle"><a href="#" class="firefox-icon browser-icon" data-desc="Addons for Firefox，相當完整，但版本更新太快也造成開發者的問題，好消息是新的Extension API架構與開發過程都非常簡單。值得投入。"></a>
-            <a href="#" title="chrome" class="chrome-icon browser-icon" data-desc="Chrome Web Store，非常完整且已經開始有付費機制。"></a>
+          <section id="browser-section" class="middle">
+            <a href="#" class="firefox-icon browser-icon" data-desc="Addons for Firefox，相當完整，但版本更新太快也造成開發者的問題，好消息是新的Extension API架構與開發過程都非常簡單。值得投入。" data-action="$('.firefox-icon').trigger('mouseenter');"></a>
+            <a href="#" title="chrome" class="chrome-icon browser-icon" data-desc="Chrome Web Store，非常完整且已經開始有付費機制。" data-action="$('.chrome-icon').trigger('mouseenter');"></a>
             
-            <a href="#" class="opera-icon browser-icon" data-desc="Opera致力於行動裝置與其他設備，但在行動裝置上的功能以Native的APP來撰寫還是王道。"></a>
-            <a href="#" class="safari-icon browser-icon" data-desc="Apple Extension Store 還屬於小眾市場，況且Apple主力「似乎」不在瀏覽器上。"></a>
-            <a href="#" class="ie-icon browser-icon" data-desc="兵敗如山倒，無話可說。"></a>
+            <a href="#" class="opera-icon browser-icon" data-desc="Opera致力於行動裝置與其他設備，但在行動裝置上的功能以Native的APP來撰寫還是王道。" data-action="$('.opera-icon').trigger('mouseenter');"></a>
+            <a href="#" class="safari-icon browser-icon" data-desc="Apple Extension Store 還屬於小眾市場，況且Apple主力「似乎」不在瀏覽器上。" data-action="$('.safari-icon').trigger('mouseenter');"></a>
+            <a href="#" class="ie-icon browser-icon" data-desc="兵敗如山倒，無話可說。" data-action="$('.ie-icon').trigger('mouseenter');"></a>
             <div id="browser-desc">&nbsp;</div>
           </section>
           <script>
             $(function(){
                 $('.browser-icon').hover(function(){
-                    
+                    $('.browser-icon').removeClass('browser-icon-hover');
+                    $(this).addClass('browser-icon-hover');
                     $('#browser-desc').html($(this).data('desc'));
-                })
+                });
                 $('#browser-section').mouseleave(function(){
+                    $('.browser-icon').removeClass('browser-icon-hover');
                     $('#browser-desc').html('&nbsp;');
                 });
             });
@@ -181,8 +184,13 @@
         </div>
         <!--next slide start-->
         <div class="slide">
-          <header></header>
-          <section class="middle">
+          <header>Idea 的產生，往往來自於</header>
+          <div id="idea_div" data-action="$( '#idea_div' ).animate({'marginTop': '30px'}, 800,'easeOutBounce');">意外</div>
+          <section >
+            <ul class="disc">
+                <li>來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
+                <li></li>
+            </ul>
           </section>
           <aside class="note">
             <section>
@@ -194,12 +202,8 @@
         <div class="slide" id="end">
           <section class="middle">
             <hgroup>
-              <h1>
-                End
-              </h1>
-              <h2>
-                Thank you
-              </h2>
+              <h2 style="font-size:200%;">The End</h2>
+              <em>Thank you</em>
             </hgroup>
             <p>blackbing@gmail.com</p>
           </section>
@@ -235,4 +239,5 @@
     </div>
 
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
 </html>
