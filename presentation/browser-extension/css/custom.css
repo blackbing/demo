@@ -93,6 +93,9 @@ a.safari-icon{
     margin:0px;
     font-size: 60px;left: -92px;height: 30px;position: relative;white-space:nowrap;
 }
+.hidden{
+    display:none;
+}
 /*#slide2 .key {
   bottom: 2px;
 }

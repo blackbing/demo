@@ -187,9 +187,8 @@
           <header>Idea 的產生，往往來自於</header>
           <div id="idea_div" class="idea_div" data-action="idea_divNext()">意外</div>
           <section >
-            <ul class="disc">
-                <li>來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
-                <li></li>
+            <ul class="disc" id="idea_ul">
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(0).slideDown();">來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
             </ul>
           </section>
           <script>
@@ -204,7 +203,7 @@
                     <p id="idea-next-effect">意外</p>\
                     </div>';
                     $('#idea_div').css({width:'94px'}).after(clone);
-                    $( '#clone_idea_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,95deg)'}, 500,'easeOutBounce');
+                    $( '#clone_idea_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,115deg)'}, 500,'easeOutBounce');
                 
                 }
             }
