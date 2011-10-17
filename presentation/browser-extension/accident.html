@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Web Developer不可忽視的瀏覽器擴充元件</title>
+
+    <!-- Linking styles -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+</body>
+</head>
+<body>
+
+    <nav id="helpers"><!-- Defining the floating helpers of the page -->
+      <button title="Previous" id="nav-prev" class="nav-prev">&lt;-</button> 
+      <button title="Jump to slide" id="slide-no">3</button> 
+      <button title="Next" id="nav-next" class="nav-next">-&gt;</button>
+      <menu>
+        <button type="checkbox" data-command="notes" title="View Notes">Notes</button>
+        <button type="checkbox" data-command="help" title="View Help">Help</button>
+        <button type="checkbox" data-command="back" title="Back to tutorial">Back</button>
+      </menu>
+    </nav>
+
+    <div class="presentation"><!-- Defining the main presentation -->
+      <div id="presentation-counter">Loading...</div>
+
+      <div class="slides"><!-- Defining slides -->
+
+        
+        
+        <div class="slide" id="first">
+          <header>這一切，都是因為一場</header>
+          <div id="idea_div" class="idea_div" data-action="idea_divNext()">意外</div>
+          
+          <script>
+            function idea_divNext(){
+                $( '#idea_div' ).animate({'top': '30px'}, 800,'easeOutBounce', function(){
+                        $( '#idea_div' ).animate({ 'webkitTransform': 'rotate3d(0,0,0,15deg)'}, 400,'easeOutBounce', function(){
+                            collapse();
+                    });
+                });
+                var collapse = function(){
+                    var clone = '<div id="clone_idea_div" class="idea_div" style="left: 693px;width:26px;top: 56px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
+                    <p id="idea-next-effect">意外</p>\
+                    </div>';
+                    $('#idea_div').css({width:'94px'}).after(clone);
+                    $( '#clone_idea_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,95deg)'}, 500,'easeOutBounce');
+                
+                }
+            }
+          </script>
+          <section>
+          <em>Press <span id="left-init-key" class="key">&rarr;</span> key to continue.</em>
+          </section>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+
+      </div>
+
+      <div id="hidden-note" class="invisible" style="display: none;">
+      </div> <!-- hidden note -->
+
+      <aside id="help" class="sidebar invisible" style="display: hidden;"><!-- Defining sidebar help -->
+        <table>
+          <caption>Help</caption>
+            <tr>
+              <th>Move forward/back</th>
+              <td>&larr;&nbsp;&rarr;</td>
+            </tr>
+            <tr>
+              <th>Move forward</th>
+              <td>spacebar</td>
+            </tr>
+            <tr>
+              <th>Hidden Notes</th>
+              <td>N</td>
+            </tr>
+            <tr>
+              <th>Help</th>
+              <td>H</td>
+            </tr>
+        </table>
+      </aside>
+
+    </div>
+
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/jquery.webkitTransform.js"></script>
+    <script type="text/javascript" src="js/sylvester.js"></script>
+</html>
