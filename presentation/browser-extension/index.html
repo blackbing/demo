@@ -109,7 +109,7 @@
                     Web Developer, What you need is "Creative", and ......
                   </h2>
                 </hgroup>
-                  <div class="practice"  data-action="$('.practice').show();setTimeout(function(){$('.practice')[0].style.fontSize='500%';}, 500);">Practice !</div>
+                  <div class="practice"  data-action="$( '.practice' ).show().animate({'fontSize': '70px'}, 800,'easeOutBounce');">Practice !</div>
             </section>
           <aside class="note">
             <section>
@@ -185,13 +185,30 @@
         <!--next slide start-->
         <div class="slide">
           <header>Idea 的產生，往往來自於</header>
-          <div id="idea_div" data-action="$( '#idea_div' ).animate({'marginTop': '30px'}, 800,'easeOutBounce');">意外</div>
+          <div id="idea_div" class="idea_div" data-action="idea_divNext()">意外</div>
           <section >
             <ul class="disc">
                 <li>來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
                 <li></li>
             </ul>
           </section>
+          <script>
+            function idea_divNext(){
+                $( '#idea_div' ).animate({'top': '30px'}, 800,'easeOutBounce', function(){
+                        $( '#idea_div' ).animate({ 'webkitTransform': 'rotate3d(0,0,0,15deg)'}, 400,'easeOutBounce', function(){
+                            collapse();
+                    });
+                });
+                var collapse = function(){
+                    var clone = '<div id="clone_idea_div" class="idea_div" style="left: 693px;width:26px;top: 56px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
+                    <p id="idea-next-effect">意外</p>\
+                    </div>';
+                    $('#idea_div').css({width:'94px'}).after(clone);
+                    $( '#clone_idea_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,95deg)'}, 500,'easeOutBounce');
+                
+                }
+            }
+          </script>
           <aside class="note">
             <section>
               Notes for second slide
@@ -240,4 +257,6 @@
 
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/jquery.webkitTransform.js"></script>
+    <script type="text/javascript" src="http://developer.themolecule.net/jQuery/webkitTransform/js/sylvester.js"></script>
 </html>
