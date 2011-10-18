@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html> 
     <head> 
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
@@ -11,14 +12,14 @@
 			
 			$.ajax({
 			  url: "getFamilyData.html",
-			  type: "GET",
+			  type: "POST",
 			  cache: false,
 			  dataType: "json",
 			  contentType: "application/json; charset=utf-8",
 			  success: function(JSon) {
 				
 				$.each(JSon.family, function(i,family){
-					$("#family_table tbody").append("<tr>" +
+					$("#family_table tbody:last").append("<tr>" +
 								  "<td>" +family.name+ "</td>" +
 								  "<td>" +family.age+ "</td>" +
 								  "<td>" +family.height+ "</td>" +
