@@ -219,6 +219,38 @@
           </aside> 
         </div>
         <!--next slide start-->
+        <div class="slide">
+          <header>讓世界變得更</header>
+          <div id="sunmoonlake_div" class="idea_div" data-action="sunmoonlake_divNext()" style="left: 350px;">美好</div>
+          <section >
+            <ul class="disc" id="sunmoonlake_ul">
+            </ul>
+            <img src="images/sunmoonlake.jpg" id="sunmoonlake" class="hidden">
+          </section>
+          <script>
+            function sunmoonlake_divNext(){
+                $( '#sunmoonlake_div' ).animate({'top': '30px'}, 800,'easeOutBounce', function(){
+                        $( '#sunmoonlake_div' ).animate({ 'webkitTransform': 'rotate3d(0,0,0,15deg)'}, 400,'easeOutBounce', function(){
+                            collapse();
+                    });
+                });
+                var collapse = function(){
+                    var clone = '<div id="clone_sunmoonlake_div" class="idea_div" style="left: 440px;width:30px;top: 50px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
+                    <p id="sunmoonlake-next-effect">美好</p>\
+                    </div>';
+                    $('#sunmoonlake_div').css({width:'86px'}).after(clone);
+                    $( '#clone_sunmoonlake_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,375deg)'}, 500,'easeOutBounce');
+                
+                };
+            }
+          </script>
+          <aside class="note">
+            <section>
+              Notes for second slide
+            </section>
+          </aside> 
+        </div>
+        <!--next slide start-->
         <div class="slide" id="end">
           <section class="middle">
             <hgroup>
