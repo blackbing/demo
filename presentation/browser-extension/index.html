@@ -188,8 +188,12 @@
           <div id="idea_div" class="idea_div" data-action="idea_divNext()">意外</div>
           <section >
             <ul class="disc" id="idea_ul">
-                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(0).slideDown();">來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
+                <li  class="hidden">來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(1).slideDown();">parse縮圖，替換URL，content script 注入式<del>攻擊</del>增強。</li>
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(2).slideDown();">Chrome Extension是個好工具。</li>
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(3).slideDown();$('#down_fb_album').fadeIn();">Download FB Album 誕生</li>
             </ul>
+            <img src="images/down_fb_album.png" id="down_fb_album" class="hidden">
           </section>
           <script>
             function idea_divNext(){
