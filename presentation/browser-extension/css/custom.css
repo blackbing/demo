@@ -25,10 +25,10 @@ li em {
     -webkit-animation-timing-function: linear;
 }
 .practice{
-    width:100%;
+    width: 100%;
     position:absolute;
     display:none;
-    font-size:180px;
+    font-size:150px;
     text-align: center;
     -webkit-transform: rotate(350deg);
     /*-webkit-transition: all 1s ease-in;
@@ -38,8 +38,8 @@ li em {
     border:0;
 }
 a.browser-icon{
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
     background-size:64px;
     width:64px;
     height:64px;
@@ -74,27 +74,18 @@ a.safari-icon{
     left: 0px;
     top: 400px;
 }
-.idea_div{
-    overflow:hidden;
-    white-space:nowrap;
-    float: left;
+#idea_div{
+    float: right;
     position: absolute;
-    top: -70px;
-    left: 600px;
+    top: 0px;
+    right: 0px;
     font-size:60px;
-    margin: 0px;
-    -webkit-transform: rotate3d(0,0,0,0deg);
-    -webkit-transform-origin:bottom left;
+    margin-right: 70px;
+    margin-top: -80px;
+    -webkit-transform: rotate(15deg);
     /*-webkit-transition: all 0.5s ease-in;
-    -moz-transition: all 0.5s ease-in;*/
-
-}
-#idea-next-effect{
-    margin:0px;
-    font-size: 60px;left: -92px;height: 30px;position: relative;white-space:nowrap;
-}
-.hidden{
-    display:none;
+    -moz-transition: all 0.5s ease-in;
+*/
 }
 /*#slide2 .key {
   bottom: 2px;
