@@ -110,7 +110,7 @@
                     Web Developer, What you need is "Creative", and ......
                   </h2>
                 </hgroup>
-                  <div class="practice"  data-action="$( '.practice' ).show().animate({'fontSize': '70px'}, 800,'easeOutBounce');">Practice !</div>
+                  <div id="practice" class="practice"  data-action="$( '#practice' ).show().animate({'fontSize': '70px'}, 800,'easeOutBounce');">Practice !</div>
             </section>
           <aside class="note">
             <section>
@@ -225,7 +225,7 @@
           <div id="perfect_div" class="idea_div" data-action="perfect_divNext()" style="left: 440px;">美好</div>
           <section >
             <ul class="disc" id="sunmoonlake_ul">
-                <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(0).slideDown();">報名要填一大堆資料，包含20幾名隊員資料。</li>
+                <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(0).slideDown();">2011橫渡日月潭報名要填一大堆資料，包含20幾名隊員個人基本資料。</li>
                 <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(1).slideDown();">為了搶前五百名有毛巾，以及工程師的尊嚴。</li>
                 <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(2).slideDown();$('#sunmoonlake').fadeIn(function(){$( '#sunmoonlake_p' ).show().animate({'fontSize': '50px'}, 1500,'easeOutBounce');});">「報名日月潭自動完成」擴充元件</li>
             </ul>
@@ -241,7 +241,7 @@
                     });
                 });
                 var collapse = function(){
-                    var clone = '<div id="clone_perfect_div" class="idea_div" style="left: 527px;width: 34px;top: 53px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
+                    var clone = '<div id="clone_perfect_div" class="idea_div" style="left: 525px;;width: 34px;top: 54px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
                     <p id="idea-next-effect" style="left: -84px;">美好</p>\
                     </div>';
                     $('#perfect_div').css({width:'84px'}).after(clone);
