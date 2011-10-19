@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -188,12 +189,12 @@
           <div id="idea_div" class="idea_div" data-action="idea_divNext()">意外</div>
           <section >
             <ul class="disc" id="idea_ul">
-                <li  class="hidden">來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
-                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(1).slideDown();">parse縮圖，替換URL，content script 注入式<del>攻擊</del>增強。</li>
+                <li  >來自女友的脫口而出的一句話：「我想下載朋友的相簿所有照片」</li>
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(1).slideDown();">parse 縮圖，替換原圖字元</li>
                 <li class="hidden" data-action="$('#idea_ul  .hidden').eq(2).slideDown();">Chrome Extension是個好工具。</li>
-                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(3).slideDown();$('#down_fb_album').fadeIn();">Download FB Album 誕生</li>
+                <li class="hidden" data-action="$('#idea_ul  .hidden').eq(3).slideDown(); $('#down_fb_album').fadeIn();"><a href="https://chrome.google.com/webstore/detail/blbmhonenddnnmbailokbccgmikhkpni" target="blank">Download FB album</a>誕生。</li>
             </ul>
-            <img src="images/down_fb_album.png" id="down_fb_album" class="hidden">
+            <img src="./images/down_fb_album.png" class="hidden" id="down_fb_album">
           </section>
           <script>
             function idea_divNext(){
@@ -220,26 +221,31 @@
         </div>
         <!--next slide start-->
         <div class="slide">
-          <header>讓世界變得更</header>
-          <div id="sunmoonlake_div" class="idea_div" data-action="sunmoonlake_divNext()" style="left: 350px;">美好</div>
+          <header>幫助你生活更加的</header>
+          <div id="perfect_div" class="idea_div" data-action="perfect_divNext()" style="left: 440px;">美好</div>
           <section >
             <ul class="disc" id="sunmoonlake_ul">
+                <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(0).slideDown();">報名要填一大堆資料，包含20幾名隊員資料。</li>
+                <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(1).slideDown();">為了搶前五百名有毛巾，以及工程師的尊嚴。</li>
+                <li class="hidden" data-action="$('#sunmoonlake_ul  .hidden').eq(2).slideDown();$('#sunmoonlake').fadeIn(function(){$( '#sunmoonlake_p' ).show().animate({'fontSize': '50px'}, 1500,'easeOutBounce');});">「報名日月潭自動完成」擴充元件</li>
             </ul>
-            <img src="images/sunmoonlake.jpg" id="sunmoonlake" class="hidden">
+            <img src="./images/sunmoonlake.jpg"  id="sunmoonlake" class="hidden">
+            
+            <div id="sunmoonlake_p" class="practice hidden" class="hidden" style="margin-top:-100px;"  >成功搶到第七名!</div>
           </section>
           <script>
-            function sunmoonlake_divNext(){
-                $( '#sunmoonlake_div' ).animate({'top': '30px'}, 800,'easeOutBounce', function(){
-                        $( '#sunmoonlake_div' ).animate({ 'webkitTransform': 'rotate3d(0,0,0,15deg)'}, 400,'easeOutBounce', function(){
+            function perfect_divNext(){
+                $( '#perfect_div' ).animate({'top': '30px'}, 800,'easeOutBounce', function(){
+                        $( '#perfect_div' ).animate({ 'webkitTransform': 'rotate3d(0,0,0,15deg)'}, 400,'easeOutBounce', function(){
                             collapse();
                     });
                 });
                 var collapse = function(){
-                    var clone = '<div id="clone_sunmoonlake_div" class="idea_div" style="left: 440px;width:30px;top: 50px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
-                    <p id="sunmoonlake-next-effect">美好</p>\
+                    var clone = '<div id="clone_perfect_div" class="idea_div" style="left: 527px;width: 34px;top: 53px;height: 66px;-webkit-transform-origin: 6px 52px;-webkit-transform: rotate3d(0,0,0,15deg);"> \
+                    <p id="idea-next-effect" style="left: -84px;">美好</p>\
                     </div>';
-                    $('#sunmoonlake_div').css({width:'86px'}).after(clone);
-                    $( '#clone_sunmoonlake_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,375deg)'}, 500,'easeOutBounce');
+                    $('#perfect_div').css({width:'84px'}).after(clone);
+                    $( '#clone_perfect_div' ).animate({'webkitTransform': 'rotate3d(0,0,0,735deg)'}, 1000,'easeOutBounce');
                 
                 };
             }
