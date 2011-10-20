@@ -100,6 +100,15 @@ a.safari-icon{
 .hidden{
     display:none;
 }
+
+.browser-analystics{
+    background-image:url(../images/browser-analystics.png);
+    position:absolute;
+    width:1px;
+    height:312px;
+    left: 554px;
+    top: 163px;
+}
 /*#slide2 .key {
   bottom: 2px;
 }
