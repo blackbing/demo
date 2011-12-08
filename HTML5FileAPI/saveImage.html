@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+/**
+ * Moves a file to a different directory. *
+ * @param {DirectoryEntry} cwd The current working directory.
+ * @param {string} srcDir Path to a directory, relative to the cwd.
+ * @param {function(DirectoryEntry)=} opt_successCallback An optional
+ * success callback passed the updated directory.
+ * */
+
+function errorHandler(e) {
+    var msg = '';
+
+    switch (e.code) {
+    case FileError.QUOTA_EXCEEDED_ERR:
+        msg = 'QUOTA_EXCEEDED_ERR';
+        break;
+    case FileError.NOT_FOUND_ERR:
+        msg = 'NOT_FOUND_ERR';
+        break;
+    case FileError.SECURITY_ERR:
+        msg = 'SECURITY_ERR';
+        break;
+    case FileError.INVALID_MODIFICATION_ERR:
+        msg = 'INVALID_MODIFICATION_ERR';
+        break;
+    case FileError.INVALID_STATE_ERR:
+        msg = 'INVALID_STATE_ERR';
+        break;
+    default:
+        msg = 'Unknown Error';
+        break;
+    };
+
+    console.log('Error: ' + msg);
+}
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
+function onInitFs(fs) {
+    console.log('Opened file system: ' + fs.name);
+    //console.log('Opened file system: ' + fs.fullPath);
+    fs.root.getFile('test.gif', {
+        create: true,
+        exclusive: true
+    }, function(fileEntry) {
+        // Create a FileWriter object for our FileEntry (log.txt).
+        fileEntry.createWriter(function(fileWriter) {
+            console.log('fileWriter');
+            console.log(fileWriter);
+            fileWriter.onwriteend = function(e) {
+                console.log('Write completed.');
+            };
+
+            fileWriter.onerror = function(e) {
+                console.log('Write failed: ' + e.toString());
+            };
+
+            // Create a new Blob and write it to log.txt.
+            var bb = new BlobBuilder(); // Note: window.WebKitBlobBuilder in Chrome 12.
+                        bb.append('R0lGODlhMAAwAPf/AOvbyACk8PPJlvDw8PumKe7u7gCZ89fz/YuKivTDhzqt1fydM+bm5vLXt+Dg4LC9wSyk2wCa76rd+PesVfv+//Ls51TV9uXx/97d3QC68v/GVc3NzXba9uLc2MTExFurxwDE84vg+PWxXObs89HR0TnM+ejo6JKSko3V+UrR+evVuoaquP6+iu72/nmoutbV1vbx7aa3vuXq7ba2tr/m++zh1ACv8fL7/u/HmESz7erq6vWqTACS78HBwaCgoK6urtrZ2ez6/snJybHf+p2dnczt/LGxsWmrxLq5uqqqqqSkpPDl2Ozo4+jl4vS1a729veL4/vS7c/y0PUe38BTN9eTk5P+6U5qamufs7iKv3gC09PykSWjW9vm1Sxm46+Xo6wCs+vL2/P749Pz18QSm9O7n3fytMGykuP7Kmeru8kLP+fmrPbvAwuzs6/m2Ve3MpBmx5vmkMXaswPfCfpmrsgC8+pOor/S6a+fj3wC0/PO9fveqOOnr7USgxwuc6wHB++bk4j2mz8vx/e3r6fSzY/PRqQGm+vupTTmo4vanQJyVkuXu+PylIO3w9Ojp6+rp6RLF+ubn6ILd97Th+fusYsPAvy/J/PaoRAmy8Ojq6/61ZUmgxfm1cSPB9djX2Obm5SnF9rGsqvHhzgvL9aOvtPDy9rO0tKOjogu58rO6vBvG+/Py8unp6erp6uXm5+Pj47m2tPP09+fn5/7PqyvH+/muWwjF+tDQ0Fa99RO/9iHJ/Tmr83nh+e/awDHP9dDX2tnTz8DFxp/m+nmfsAmm8MfHxwvC8sC8u4ChrsnDv4uZn8jIyMvIxjKv2Orq6dPT05OepFihwZSwvECv6czMzMDDxfqeISjM9vWnSH2zx/mmRR2t8PiqRrewrbXs+7nt/OXl5aemptzb2/T09HrJ9Pa7Zs/PzyC88N7j5DC+89TU1OLi4hHI+xnH9+jf1PC7ePPQn/y3bPm9e/27dqCkpfmjN/6fPRjK9PimPJyZmGOw0peXlyLH+sfIyPHFj9TU1CH5BAEAAP8ALAAAAAAwADAAAAj/AP8JHEiw4EBqqWKscMFwxQpSbDYYnEix4sB+dj40O9eJlqWPtGh18qLgCB1qFlNOZHMmCyR+JSxwkBSiZghJXFKUUJWr2YoeKlV6OIPqT7sUIQRBuUGhqdMgB75xKMHuDxxkEoNOpJPlDwhfwqA4HUu26QFe9/78CZRKK0FzcrTUMRZC7I0gePPq1cv0gIUMdTCtcPuv36Y8WkB9uwGlsePHkB/jDYFKixY5t4J66JPHRjqlB0KLHk269IEgwjDZAHOGRMoNm8AE2EbjQJHbuHPr3o37AIoAAcAMtujCUIQIKIrQWM68ufPnzovgOm7ITkU6ZAzw2EVjiPfv4MOL/x8vwQ8PA9tMTSwGgZgfP+QmSZhPv779+/iH5HhPJprrgvTQQUoMD6DzhQwIYqHgggw26CAWCB74SwykQKOMDwUhcUoosBzDzCcmPDLIiG2UWOIgJRawRBkFtEGiiS4OosMjjzhQCSzh5HMCSgNdkYQRSPRATRWysMKKMzokmSQfNZTBBx+91MBHJqIwMaOSOhhpggkOFPPED0Tsg6FAQhDxwww9eLDBOgxsqaUJjjiSSQ2FKFhILyPQmQkrjmxpAitbyiKLOEJ4MEM4+5zwjEA/KAGkB0KY4wADsvi5ZS9NyMBKAgCMkEAhiwhQZ54A9AmoLAwwAAQ1XoKJABICEf+RhClPFLMBCeKkKqigJrjjTw2hcmICJzgAUIs7i6ggQBMm7IpqFZ6QQE0PRvhwAoYbyBqkELe8AMQrqTIQSSQMyNBALSoAsAUOlHDCCSVfCHDsF5F8Ea4sDniijjnFIBHOCfv8M4MPPyBRDDXPeCLOpKni4c4XIyzijz0JbDFBLbVs4YQe9qiwiAzuAFBFquBgIM4LJAjxRBL7ICDEwEbUao63GDgAritNvKGHPwDg4cQChOghzxx6iLBAAu68EYUeAJALjgMOYACEOhv08MMVCMyQRDim9CAECZ7UvM464JYLwM/cTECIPGjMMgsaUUxwyALavFEvA5+MvY4DJ5v/44ERRCBgyilcC/kMEBisU8Xi4By4yAUA7FCPCPOwYDkL8RithwwXjCDDF4svHnW0fwf+gw/hzOABNeosPLIrrgCiwhv+ROEENzskUosmvGtyyA6XiODEOzi8AYArqX7yigNAPFOMKYEnQbjqG7wgzjrgpBqJ7Dg4IQI39UguhRXkW2HGDvjssYMI77yhgripVsG3Os9HP72aL2DwSqV+YhHxBU0QQRwSYQYNGFADBMCGNe4giwssYgR86NOWGLAOcdAPcAj4QTiUYAr86U8WrcBSGviAgzgwIg472IMUDGiGRGBjDSf0xyPSkCRntIIVkaigOv6GNVPArAfVw0AV/0ygAxj1QgQ74JkbCLADbuxBfZdgRAJqIABCEKIXfDCRDmTxCnE8wwM/aJkPzSSk/FWBFSYqQBMaUIM0BEEAjCjHGlCYiD2swQ2M6EULGlEGADABRlwUxy16gCgErG4fBUOY/kzQhgI4sgCNaEQpGmANAYjCDG6QghsyuYQ7xKEMkWzEI1skiwpuAAlKOAECBHKF1BUDV69g5CghuQQRNCAI8CCAKLowB1EwogEtEIATZunINuDLE8uAHgLGpIRTGKEH5gCCA2TRyAFY05qFWEILWkCIObSgCwkIQhSisM1eNKAU1xxAAXTwCQc8w2otm4FAPOAjJAghf+DQQQHSaf9NdFaAEBVowR0EEIYyOKGf/FSnM6ogjlOeQpWZEYgPOOgBWLJinwNYhUY1GgtRNCAMYfDHR8PQgCWMY6OruGYbuPQCMGJtTAIxRT2p8YJJVXOjJx1HBWAwDpKKIhbjgEEFTroKoqpTB+AQBzU0pEoeDYQIp+hGMoDRgSbsFAZjGIMYtsrVrWq1q13NKgxgwAQ8ACMZoVDEMg2ChEBAABGImMY0ckDXKdj1rnjNq16nQNccTAOuEIBANIQwkRUYQjs8SKxiF8vYxjqWsQYgQwwqEg3jHOeymM2sZjerWUMMwyLVgIBsgEPa0pr2tKgtrSH08Z+KsEG0NoitbGdL29qu2ja2eegDYVUS2jpoIQPADa5wh0vc4Woht8VwiwcCUYcMgOC50I2udKcL3Qzk4QhZcYs5XFAUEIyCCuANr3jHG95RgMAq0iBMQVKhgD+wwxdqsIB850vf+aZADdewRQY+EAz1GoQEdAhELnQREy5w4MAI5gAXclKCdnjhAw/wr0UecAYFnAMUJVBDCjZ83xJ04hwKkAMbJBwUEjwgBnI4wgdW/IEjZCMGbGitVgICADs=');
+            fileWriter.write(bb.getBlob('image/gif'));
+
+        }, errorHandler);
+
+    }, errorHandler);
+}
+
+window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024 /*5MB*/ , onInitFs, errorHandler);
+</script>
+</body>
+</html>
