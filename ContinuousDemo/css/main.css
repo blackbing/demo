@@ -1,0 +1,77 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width:100%;
+  background-color:#CCC;
+}
+
+#overlay{
+  width: 100%;
+  height: 100%;
+}
+
+#videoWrap {
+  left:50%;
+  top:50px;
+  margin-left:-354px;
+  width:708;
+  height:396;
+  position: absolute;
+  z-index: 99;
+}
+#control{
+  cursor:pointer;
+  position:absolute;
+  bottom: 64px;
+  left:50%;
+  z-index:101;
+  background-repeat:no-repeat;
+  margin-left:-16px;
+  width:32px;
+  height:32px;
+}
+#control.play{
+  background-image:url('../images/play_button.png');
+  background-size: 32px 32px;
+}
+#control.shot{
+  background-image:url('../images/snapshot.png');
+}
+
+#decviceWrap{
+  left:50%;
+  top:30px;
+  width:708px;
+  height:462px;
+  position:absolute;
+  z-index:100;
+  margin-left:-354px;
+}
+#device{
+  left:233px;
+  width:243px;
+  height:462px;
+  position:absolute;
+  z-index:100;
+  background-image:url('../images/device.png');
+}
+#output{
+  width:100%;
+  text-align:center;
+  height:150px;
+  position:absolute;
+  top:476px;
+}
+#filter{
+  position:absolute;
+  top:0;
+  padding: 5px;
+  margin:10px;
+  width:150px;
+}
+#filter ul{
+  list-style-type:none;
+  margin:0;
+  padding:0 10px 0 0;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Continunou Demo</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <style type="text/css">
+    </style>
+    <link href="css/main.css" media="screen" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="overlay">
+      <div id="videoWrap">
+        <video id="video" width="708" height="396" loop="true">
+          <source src="BigBuckBunny_640x360.mp4" type="video/mp4"/>
+          <source src="BigBuckBunny_640x360.ogv" type="video/ogg"/>
+        </video>
+      </div>
+      <div id="decviceWrap">
+        <div id="device">
+           <span id="control" class="play"></span>
+        </div>
+      </div>
+      <div id="output" style=""></div>
+    </div>
+    <div id="filter">
+      <h5>Filter</h5>
+      <ul>
+        <li><label><input type="radio" name="filter" value="" checked="checked">none</label></li>
+        <li><label><input type="radio" name="filter" value="grayscale">grayscale</label></li>
+        <li><label><input type="radio" name="filter" value="brightness">brightness</label></li>
+        <li><label><input type="radio" name="filter" value="threshold">threshold</label></li>
+        <li><label><input type="radio" name="filter" value="sharpen">sharpen</label></li>
+        <li><label><input type="radio" name="filter" value="blur">blur</label></li>
+      </ul>
+    </div>
+    <audio id="audio" src="sound/camera-click.mp3" ></audio>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="javascript/underscore-min.js"></script>
+    <script type="text/javascript" src="javascript/json2.js"></script>
+    <script type="text/javascript" src="javascript/backbone-min.js"></script>
+    <script src="javascript/soundmanagerv2/script/soundmanager2-nodebug-jsmin.js"></script>
+
+    <script>
+    var require = {"baseUrl":'javascript'}
+    soundManager.url = 'javascript/soundmanagerv2/swf/';
+    soundManager.defaultOptions.volume = 100;
+    soundManager.onready(function() {
+      soundManager.createSound({
+        id:'camera-click',
+        url:'sound/camera_click.ogg',
+        loops: 1
+        })
+
+    });
+    </script>
+    <script data-main="main" src="javascript/require.js"></script>
+  </body>
+</html>
