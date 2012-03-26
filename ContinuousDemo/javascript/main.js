@@ -15,18 +15,18 @@ require([
 
   });
   var captureSt = null;
-  $('.shot').live('mousedown', function(){
+  $('.shot').on('mousedown touchstart', function(){
     captureSt = setInterval(function(){
       video.shoot();
       sound.cameraShot();
     }, 100);
   });
 
-  $(document).live('mouseup', function(){
+  $(document).on('mouseup touchend', function(){
     clearInterval(captureSt);
   })
 
-  $('#control').live('dblclick', function(event){
+  $('#control').on('dblclick', function(event){
     event.preventDefault();
 
   });
